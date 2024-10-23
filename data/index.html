@@ -1,0 +1,45 @@
+<!--#define D0 16
+  #define D1 5
+  #define D2 4
+  #define D3 0
+  #define D4 2
+  #define D5 14
+  #define D6 12
+  #define D7 13
+  #define D8 15
+  #define D9 3
+  #define D10 1-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>RC Car Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="jquery.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <h1>C.F.I.P Politécnico</h1>
+  <h2>RC Car Project</h2>
+  <div class="pad">
+    <!----------------------------------------------------------------------Buttons----------------------------------------------------------------------->
+    <section class="udsec">
+      <button onmousedown="OnButtonClick('on', '0')" onmouseup="OnButtonClick('off', '0')"><i class="fa-solid fa-up-long"></i></button>
+      <button onmousedown="OnButtonClick('on', '1')" onmouseup="OnButtonClick('off', '1')"><i class="fa-solid fa-down-long"></i></button>
+    </section>
+    <section class="lrsec">
+      <button onmousedown="OnButtonClick('on', '2')" onmouseup="OnButtonClick('off', '2')"><i class="fa-solid fa-left-long"></i></button>
+      <button onmousedown="OnButtonClick('on', '3')" onmouseup="OnButtonClick('off', '3')"><i class="fa-solid fa-right-long"></i></button>
+    </section>
+  </div>
+  <div class="lights">
+    <button>Headlights</button>
+    <button>Rear lights</button>
+  </div>
+
+
+</body>
+
+</html>
