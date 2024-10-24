@@ -1,14 +1,3 @@
-/*$(document).ready(function() {
-    $('#miBoton').on('mousedown', function() {
-        console.log("Hola");
-    });
-
-    $('#miBoton').on('mouseup', function() {
-        console.log("Mundo!");
-    });
-});//mousedown click, mouse up leave*/
-
-
 function SetPinState(pin, state) {
     console.log("Pin: " + pin + "\nNew state: " + state);
     let xhttp = new XMLHttpRequest();
