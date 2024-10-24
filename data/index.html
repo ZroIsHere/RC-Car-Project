@@ -13,30 +13,30 @@
 <html>
 
 <head>
-  <title>RC Car Project</title>
+  <title>CIFP Politecnico - RC Car Project</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <script src="jquery.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="scripts.js"></script>
 </head>
 <body>
-  <h1>C.I.F.P Politécnico</h1>
-  <h2>RC Car Project</h2>
+  <img src='https://elpolitecnico.es/wp-content/uploads/2024/06/logo_CIFP_REESQ-h75.png'/>
   <div class="pad">
-    <!----------------------------------------------------------------------Buttons----------------------------------------------------------------------->
     <section class="udsec">
-      <button onmousedown="SetPinState('0', 'high')" onmouseup="SetPinState('0', 'low')"><i class="fa-solid fa-up-long"></i></button>
-      <button onmousedown="SetPinState('1', 'high')" onmouseup="SetPinState('1', 'low')"><i class="fa-solid fa-down-long"></i></button>
+      <button id='up'><i class="fa-solid fa-up-long"></i></button>
+      <button id='down'><i class="fa-solid fa-down-long"></i></button>
     </section>
+    <h3>RC Car Project</h3>
     <section class="lrsec">
-      <button onmousedown="SetPinState('2', 'high')" onmouseup="SetPinState('2', 'low')"><i class="fa-solid fa-left-long"></i></button>
-      <button onmousedown="SetPinState('3', 'high')" onmouseup="SetPinState('3', 'low')"><i class="fa-solid fa-right-long"></i></button>
+      <button id='left'><i class="fa-solid fa-left-long"></i></button>
+      <button id='right'><i class="fa-solid fa-right-long"></i></button>
     </section>
   </div>
   <div class="lights">
-    <button onclick="ChangePinState('4')">Headlights</button>
-    <button onclick="ChangePinState('5')">Rear lights</button>
+    <button id='headlights'><span>Headlights</span></button>
+    <button id='rearlights'><span>Rear lights</span></button>
   </div>
   <div class="text">
     <span>This project is <a href="https://github.com/ZroIsHere/RC-Car-Project">public source</a></span>

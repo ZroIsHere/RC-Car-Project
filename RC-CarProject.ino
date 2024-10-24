@@ -56,17 +56,19 @@ void setup() {
   WebServer.on("/style.css", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(SPIFFS, "/style.css", "text/css");
   });
-  WebServer.on("/jquery.js", HTTP_GET, [](AsyncWebServerRequest * request) {
-    request->send(SPIFFS, "/jquery.js", "application/javascript");
+  WebServer.on("/scripts.js", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(SPIFFS, "/scripts.js", "application/javascript");
   });
   /*------------------------------------------------------------------WebSite api calls------------------------------------------------------------------*/
   WebServer.on("/setPinState", HTTP_POST, [](AsyncWebServerRequest * request) {
     int pin = usefullPins[request->arg("pin").toInt()];
     if (request->arg("state") == "high"){
       digitalWrite(pin, HIGH);
+      Serial.println("High");
     }
     else {
       digitalWrite(pin, LOW);
+      Serial.println("Low");
     }
     request->send(200, "text/plain", "");
   });
