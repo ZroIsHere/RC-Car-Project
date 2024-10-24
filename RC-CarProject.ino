@@ -10,7 +10,7 @@
 
 AsyncWebServer WebServer(80);
 
-List<int> isAuto;
+/*                   D0 D1 D2 D3 D4  D5  D5  D6  D8 D9 D10*/
 int usefullPins[] = {16, 5, 4, 0, 2, 14, 12, 13, 15, 3, 1};
 
 bool DebugMode = true;
@@ -19,8 +19,7 @@ void setup() {
   /*--------------------------------------------------------------Define the pin and modes---------------------------------------------------------------*/
   for (int pin : usefullPins) {
     pinMode(pin, OUTPUT);
-    digitalWrite(pin, HIGH);
-    isAuto.Add(pin);
+    digitalWrite(pin, LOW);
   }
   /*--------------------------------------------------------------------Start serial---------------------------------------------------------------------*/
   Serial.begin(115200);
@@ -44,12 +43,12 @@ void setup() {
   Serial.println("");
 
   for (int i = 0; i < 5; i++) {
-
     digitalWrite(LED_BUILTIN, LOW);
     delay(50);
     digitalWrite(LED_BUILTIN, HIGH);
     delay(50);
   }
+  digitalWrite(LED_BUILTIN, LOW);
   /*---------------------------------------------------------------WebSite frontend calls----------------------------------------------------------------*/
   WebServer.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(SPIFFS, "/index.html", String());
@@ -61,29 +60,20 @@ void setup() {
     request->send(SPIFFS, "/jquery.js", "application/javascript");
   });
   /*------------------------------------------------------------------WebSite api calls------------------------------------------------------------------*/
-  WebServer.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
-    
-      int pin = usefullPins[request->arg("pin").toInt()];
-      if (isAuto.Contains(pin)) {
-        isAuto.Remove(isAuto.IndexOf(pin));
-      }
+  WebServer.on("/setPinState", HTTP_POST, [](AsyncWebServerRequest * request) {
+    int pin = usefullPins[request->arg("pin").toInt()];
+    if (request->arg("state") == "high"){
+      digitalWrite(pin, HIGH);
+    }
+    else {
       digitalWrite(pin, LOW);
-      request->send(200, "text/plain", GetPinState(pin));
+    }
+    request->send(200, "text/plain", "");
   });
-  WebServer.on("/updateStates", HTTP_GET, [](AsyncWebServerRequest * request) {
-    String ret = "notLogged";
-    ret = "";
-      for (int pin : usefullPins) {
-        String retStr = GetPinState(pin);
-
-        if (ret == "") {
-          ret += '"' + retStr + '"';
-        } else {
-          ret += ",\"" + retStr + '"';
-        }
-      }
-
-    request->send(200, "text/plain", "[" + ret + "]");
+  WebServer.on("/changePinState", HTTP_POST, [](AsyncWebServerRequest * request) {
+    int pin = usefullPins[request->arg("pin").toInt()];
+    digitalWrite(pin, !digitalRead(pin));
+    request->send(200, "text/plain", "");
   });
   /*--------------------------------------------------------------------Start WebSite--------------------------------------------------------------------*/
   WebServer.begin();
@@ -93,16 +83,4 @@ void setup() {
 
 void loop() {
   delay(5000);
-}
-
-String GetPinState(int pin) {
-
-  String retStr = "ON";
-  if (digitalRead(pin)) {
-    retStr = "OFF";
-  }
-  if (isAuto.Contains(pin)) {
-    retStr = "Auto - " + retStr;
-  }
-  return retStr;
 }

@@ -21,28 +21,25 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <h1>C.I.F.P Politécnico</h1>
+  <h1>C.F.I.P Politécnico</h1>
   <h2>RC Car Project</h2>
   <div class="pad">
     <!----------------------------------------------------------------------Buttons----------------------------------------------------------------------->
     <section class="udsec">
-      <button onmousedown="OnButtonClick('on', '0')" onmouseup="OnButtonClick('off', '0')"><i class="fa-solid fa-up-long"></i></button>
-      <button onmousedown="OnButtonClick('on', '1')" onmouseup="OnButtonClick('off', '1')"><i class="fa-solid fa-down-long"></i></button>
+      <button onmousedown="SetPinState('0', 'high')" onmouseup="SetPinState('0', 'low')"><i class="fa-solid fa-up-long"></i></button>
+      <button onmousedown="SetPinState('1', 'high')" onmouseup="SetPinState('1', 'low')"><i class="fa-solid fa-down-long"></i></button>
     </section>
     <section class="lrsec">
-      <button onmousedown="OnButtonClick('on', '2')" onmouseup="OnButtonClick('off', '2')"><i class="fa-solid fa-left-long"></i></button>
-      <button onmousedown="OnButtonClick('on', '3')" onmouseup="OnButtonClick('off', '3')"><i class="fa-solid fa-right-long"></i></button>
+      <button onmousedown="SetPinState('2', 'high')" onmouseup="SetPinState('2', 'low')"><i class="fa-solid fa-left-long"></i></button>
+      <button onmousedown="SetPinState('3', 'high')" onmouseup="SetPinState('3', 'low')"><i class="fa-solid fa-right-long"></i></button>
     </section>
   </div>
   <div class="lights">
-    <button>Headlights</button>
-    <button>Rear lights</button>
+    <button onclick="ChangePinState('4')">Headlights</button>
+    <button onclick="ChangePinState('5')">Rear lights</button>
   </div>
-  <div class="text">
-    <span>This project is <a href="https://github.com/ZroIsHere/RC-Car-Project">public source</a></span>
-    <br/>
-    <span>Made with <i class="fa fa-heart pulse"></i> by ZroIsHere</span>
-  </div>
+
+
 </body>
 
 </html>
