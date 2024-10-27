@@ -12,9 +12,23 @@ function ChangePinState(pin) {
     xhttp.send();
 }
 
+function SetEngineSpeed(pin, speed) {
+    console.log("Pin: " + pin + "\nSpeed: " + speed);
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST", `/setEngineSpeed?pin=${pin}&speed=${speed}`);
+    xhttp.send();
+}
+
 $(document).ready(function() {
-    $('#up').on('mousedown touchstart', function() { SetPinState('0', 'high'); });
-    $('#up').on('mouseup touchend', function() { SetPinState('0', 'low'); });
+    SetEngineSpeed('0', '0');
+    SetPinState('1', 'low');
+    SetPinState('2', 'low');
+    SetPinState('3', 'low');
+    SetPinState('4', 'low');
+    SetPinState('5', 'low');
+    
+    $('#up').on('mousedown touchstart', function() { SetEngineSpeed('0', '255'); });//Change this high with the slide value
+    $('#up').on('mouseup touchend', function() { SetEngineSpeed('0', '0'); });
   
     $('#down').on('mousedown touchstart', function() { SetPinState('1', 'high'); });
     $('#down').on('mouseup touchend', function() { SetPinState('1', 'low'); });
@@ -27,4 +41,4 @@ $(document).ready(function() {
   
     $('#headlights').on('click', function() { ChangePinState('4'); });
     $('#rearlights').on('click', function() { ChangePinState('5'); });
-  });
+});
