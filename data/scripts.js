@@ -20,7 +20,7 @@ function SetEngineSpeed(pin, speed) {
 }
 
 $(document).ready(function() {
-    SetEngineSpeed('0', '0');
+    /*SetEngineSpeed('0', '0');
     SetPinState('1', 'low');
     SetPinState('2', 'low');
     SetPinState('3', 'low');
@@ -40,5 +40,5 @@ $(document).ready(function() {
     $('#right').on('mouseup touchend', function() { SetPinState('3', 'low'); });
   
     $('#headlights').on('click', function() { ChangePinState('4'); });
-    $('#rearlights').on('click', function() { ChangePinState('5'); });
+    $('#rearlights').on('click', function() { ChangePinState('5'); });*/
 });
